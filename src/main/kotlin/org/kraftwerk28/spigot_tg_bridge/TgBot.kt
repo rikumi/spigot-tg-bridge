@@ -8,6 +8,8 @@ import kotlinx.coroutines.channels.consumeEach
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.InetSocketAddress
+import java.net.Proxy
 import java.time.Duration
 import org.kraftwerk28.spigot_tg_bridge.Constants as C
 
@@ -24,8 +26,10 @@ class TgBot(
     private val plugin: Plugin,
     private val config: Configuration,
 ) {
+    private val proxy: Proxy? = if (config.proxyHost != null && config.proxyPort != null) Proxy(Proxy.Type.HTTP, InetSocketAddress(config.proxyHost, config.proxyPort)) else null
     private val client: OkHttpClient = OkHttpClient
         .Builder()
+        .proxy(proxy)
         .readTimeout(Duration.ZERO)
         .build()
     private val api = Retrofit.Builder()

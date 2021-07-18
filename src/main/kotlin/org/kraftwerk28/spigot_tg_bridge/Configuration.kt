@@ -27,6 +27,9 @@ class Configuration(plugin: Plugin) {
     val webhookConfig: Map<String, Any>?
     val pollTimeout: Int
 
+    val proxyHost: String?
+    val proxyPort: Int?
+
     var commands: BotCommands
 
     init {
@@ -101,6 +104,10 @@ class Configuration(plugin: Plugin) {
             leaveString = getString("strings.left", "<i>%username%</i> left.")!!
             logDeath = getBoolean("logPlayerDeath", false)
             logPlayerAsleep = getBoolean("logPlayerAsleep", false)
+
+            proxyHost = getString("proxyHost", "")
+            proxyPort = getInt("proxyPort", 0)
+
             commands = BotCommands(this)
         }
     }
