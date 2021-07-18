@@ -26,7 +26,12 @@ class TgBot(
     private val plugin: Plugin,
     private val config: Configuration,
 ) {
-    private val proxy: Proxy? = if (config.proxyHost != null && config.proxyPort != null) Proxy(Proxy.Type.HTTP, InetSocketAddress(config.proxyHost, config.proxyPort)) else null
+    private val proxy: Proxy = (
+        if (config.proxyHost != null && config.proxyPort != null)
+            Proxy(Proxy.Type.HTTP, InetSocketAddress(config.proxyHost, config.proxyPort))
+        else
+            Proxy.NO_PROXY
+        )
     private val client: OkHttpClient = OkHttpClient
         .Builder()
         .proxy(proxy)
