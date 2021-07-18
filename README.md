@@ -54,6 +54,8 @@
 | commands | Dictionary of command text used in Telegram bot | `Map<string, string>` | :heavy_check_mark: | See below |
 | telegramMessageFormat | Format string for TGtoMC chat message | `string` | :x: | See default config |
 | minecraftMessageFormat | Format string for MCtoTG chat message | `string` | :x: | See default config |
+| proxyHost | Host name for HTTP proxy to use | `string` | :x: | - |
+| proxyPort | Port number for HTTP proxy to use | `number` | :x: | - |
 
 
 ## Telegram bot commands:
